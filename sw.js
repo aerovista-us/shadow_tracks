@@ -1,10 +1,11 @@
 /* Shadow Album Player — Service Worker (offline-first app shell) */
-const CACHE_VERSION = "shadowplayer-v2";
+const CACHE_VERSION = "shadowplayer-v4";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
+  "./favicon.svg",
   "./favicon.ico",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
