@@ -1,15 +1,22 @@
 /* Shadow Album Player — Service Worker (offline-first app shell) */
-const CACHE_VERSION = "shadowplayer-v1";
+const CACHE_VERSION = "shadowplayer-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
+  "./favicon.ico",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
-  "./audio/sample.wav"
+  "./audio/bad_habits.mp3",
+  "./audio/be_positive.mp3",
+  "./audio/side-eye_tax.mp3",
+  "./audio/cut_the_roots.mp3",
+  "./audio/nice_ask,_no_key.mp3",
+  "./audio/ship_clean_swamphop_crew_brief.mp3",
+  "./audio/full_send_side-swipe_synthetic_shoreline.mp3"
 ];
 
 self.addEventListener("install", (event) => {

@@ -1,13 +1,13 @@
 /* Shadow Album Player — app.js (no external deps) */
 // Keep these paths in sync with files in /audio and optional SW precache entries.
 const tracks = [
-  { id: "bad_habits",  title: "Bad Habits",              vibe: "shadow cut · bad week energy", file: "audio/sample.wav" },
-  { id: "sick_plus",   title: "Sick +",                  vibe: "disgustin' positive",         file: "audio/sample.wav" },
-  { id: "receipts",    title: "Receipts & Rebounds",     vibe: "accountability bounce",       file: "audio/sample.wav" },
-  { id: "saint_sinner",title: "Saint, Then Sinner",      vibe: "switch-flip anthem",          file: "audio/sample.wav" },
-  { id: "dnd_okay",    title: "Don’t Ask Me If I’m Okay",vibe: "sarcasm healing",             file: "audio/sample.wav" },
-  { id: "new_rules",   title: "New Rules, Same Monster", vibe: "discipline vs relapse",       file: "audio/sample.wav" },
-  { id: "dnd",         title: "Do Not Disturb",          vibe: "temptation test",             file: "audio/sample.wav" },
+  { id: "bad_habits",  title: "Bad Habits",              vibe: "shadow cut · bad week energy", file: "audio/bad_habits.mp3" },
+  { id: "sick_plus",   title: "Sick +",                  vibe: "disgustin' positive",         file: "audio/be_positive.mp3" },
+  { id: "receipts",    title: "Receipts & Rebounds",     vibe: "accountability bounce",       file: "audio/side-eye_tax.mp3" },
+  { id: "saint_sinner",title: "Saint, Then Sinner",      vibe: "switch-flip anthem",          file: "audio/cut_the_roots.mp3" },
+  { id: "dnd_okay",    title: "Don’t Ask Me If I’m Okay",vibe: "sarcasm healing",             file: "audio/nice_ask,_no_key.mp3" },
+  { id: "new_rules",   title: "New Rules, Same Monster", vibe: "discipline vs relapse",       file: "audio/ship_clean_swamphop_crew_brief.mp3" },
+  { id: "dnd",         title: "Do Not Disturb",          vibe: "temptation test",             file: "audio/full_send_side-swipe_synthetic_shoreline.mp3" },
 ];
 
 const state = {
@@ -375,16 +375,19 @@ function roundRect(ctx, x, y, w, h, r){
 // PWA install prompt
 let deferredPrompt = null;
 window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
   deferredPrompt = e;
   installBtn.hidden = false;
 });
 
 installBtn.addEventListener("click", async () => {
   if(!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  toast(outcome === "accepted" ? "Installed. Shadow mode ready." : "Install dismissed.");
+  try {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    toast(outcome === "accepted" ? "Installed. Shadow mode ready." : "Install dismissed.");
+  } catch (e) {
+    toast("Install prompt unavailable on this browser.");
+  }
   deferredPrompt = null;
   installBtn.hidden = true;
 });
