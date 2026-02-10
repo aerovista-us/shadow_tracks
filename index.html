@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#00ffbe" />
+  <meta name="description" content="Shadow Album Player — offline-first PWA audio player." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <title>Shadow Album Player</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="badge" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3c4.4 0 8 3.6 8 8 0 4.1-3.2 7.5-7.2 7.9-.5 1.4-1.6 2.1-3.3 2.1-2 0-3.6-1.3-4-3.2C4.2 16.3 3 14.3 3 11c0-4.4 4.6-8 9-8Z" stroke="rgba(0,255,190,.85)" stroke-width="1.2"/>
+            <path d="M8.3 12.8c1 1.3 2.2 2 3.7 2 1.5 0 2.7-.7 3.7-2" stroke="rgba(233,236,255,.75)" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="h1">
+          <div class="title">Shadow Album Player</div>
+          <div class="sub">PWA • offline-first • monster bass vibes</div>
+        </div>
+      </div>
+
+      <div class="pillrow">
+        <div class="pill">
+          <div class="dot"></div>
+          <b>148</b><span>BPM mode</span>
+        </div>
+        <div class="pill">
+          <b class="kbd">Space</b><span>play/pause</span>
+        </div>
+        <div class="pill">
+          <b class="kbd">S</b><span>shuffle</span>
+        </div>
+        <div class="pill">
+          <b class="kbd">L</b><span>loop</span>
+        </div>
+        <button id="installBtn" class="pill" hidden>
+          <b>Install</b><span>add to home</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Now Playing -->
+      <div class="card">
+        <div class="now">
+          <div class="cover" role="img" aria-label="Album cover">
+            <div class="grain"></div>
+            <div class="label">
+              <div id="nowTitle" class="trackTitle">—</div>
+              <div id="nowMeta" class="trackMeta">—</div>
+              <div id="tagline" class="tagline">shadow album mode</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="btnrow" aria-label="Playback controls">
+              <button id="prevBtn" class="iconbtn" aria-label="Previous"></button>
+              <button id="playBtn" class="iconbtn primary" aria-label="Play"></button>
+              <button id="nextBtn" class="iconbtn" aria-label="Next"></button>
+            </div>
+
+            <div>
+              <input id="seek" class="seek" type="range" min="0" max="0" step="1" value="0" aria-label="Seek" />
+              <div class="time">
+                <span id="curTime">0:00</span>
+                <span id="durTime">0:00</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <button id="shuffleBtn" class="iconbtn" aria-label="Shuffle" aria-pressed="false" title="Shuffle (S)"></button>
+              <div class="small">Tip: run on <span class="kbd">http://localhost</span> to enable install/offline.</div>
+              <button id="loopBtn" class="iconbtn" aria-label="Loop" aria-pressed="false" title="Loop (L)"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="vizWrap">
+          <canvas id="viz" aria-label="Visualizer"></canvas>
+        </div>
+      </div>
+
+      <!-- Playlist -->
+      <div class="card">
+        <div class="section">
+          <h2>Tracklist</h2>
+          <div id="list" class="list" aria-label="Playlist"></div>
+          <div class="section" style="padding-top:0">
+            <div class="small">
+              Drop your audio files into <span class="kbd">/audio</span> and update <span class="kbd">tracks</span> in <span class="kbd">app.js</span>.
+              (This bundle ships with a tiny <span class="kbd">sample.wav</span> so you can test instantly.)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
